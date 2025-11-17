@@ -59,7 +59,7 @@ export default {
 </script>
 
 <template>
-    <div class="stock-card">
+    <div class="stock-card" style="width:100%">
         <header class="card-header">
             <div class="title">name:{{ stockName }}</div>
             <div class="code">code:{{ stockCode }}</div>
