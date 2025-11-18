@@ -7,7 +7,8 @@ export default {
             stockName: 'six_feet_under',
             stockCode: 'SFU',
             stockPrice: 100,
-            stockStatus: 'up' // 'up' | 'down' | 'flat'
+            stockStatus: 'up', // 'up' | 'down' | 'flat'
+            some_methods: 'test'
         }
     },
     computed: {
@@ -69,7 +70,7 @@ export default {
             </div>
 
             <div>status:<span :class="status">{{ stockStatus }}</span></div>
-            <StockChart :price="stockPrice" :status="stockStatus" />
+            <StockChart :price="stockPrice" :status="stockStatus" :something="some_methods"/>
         </header>
     </div>
 </template>

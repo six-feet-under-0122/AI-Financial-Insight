@@ -8,6 +8,7 @@ import {TitleComponent,TooltipComponent,GridComponent,LegendComponent} from 'ech
 use([CanvasRenderer,LineChart,TitleComponent,TooltipComponent,GridComponent,LegendComponent])
 export default {
     name:'stockChart',
+    props:["something"],
     data(){
         return {
             //echarts的option
@@ -63,15 +64,17 @@ export default {
         <button @click="updateChartData">Update Chart Data</button>
     </div>
     <v-chart :option="chartoption" ref="chart" :autoresize="true" class="stock_chart"></v-chart>
-
+    
 </div>
-
+<div class="test">{{ something }}</div>
 
 
 </template>
 
 <style>
-
+.test {
+color:brown;
+}
 
 
 </style>
