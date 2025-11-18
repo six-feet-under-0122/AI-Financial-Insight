@@ -15,7 +15,7 @@ export default {
             chartoption:{
                 title:{
                     text:'sample: six_feet_under stock chart',
-                    subtext:'01.22'
+                    subtext:this.something
                 },
                 tooltip:{
                     trigger:'axis'

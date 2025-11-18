@@ -8,7 +8,7 @@ export default {
             stockCode: 'SFU',
             stockPrice: 100,
             stockStatus: 'up', // 'up' | 'down' | 'flat'
-            some_methods: 'test'
+            some_methods: '01.22'
         }
     },
     computed: {
