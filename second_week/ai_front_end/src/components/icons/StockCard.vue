@@ -1,5 +1,6 @@
 <script>
 import StockChart from './StockChart.vue';
+import axios from 'axios';
 export default {
     name: 'StockCard',
     data() {
@@ -50,6 +51,17 @@ export default {
             console.log("down")
             this.stockPrice-=1
 
+        },
+        async update_code_name(){
+            try{
+            const response = await axios.get('http://localhost:5000/api/code_name')
+            this.stockCode=response.data.code_name
+            console.log("code_name:"+this.stockCode)
+            }
+            catch(error){
+                this.stockCode="error"+" "+error.message
+                console.log("error"+error.message)
+            }
         }
 
     },
@@ -59,18 +71,22 @@ export default {
 }
 </script>
 
+
 <template>
     <div class="stock-card" style="width:100%">
         <header class="card-header">
             <div class="title">name:{{ stockName }}</div>
-            <div class="code">code:{{ stockCode }}</div>
+            <div class="code">
+                code:{{ stockCode }}
+                <button @click="update_code_name">update</button>
+            </div>
             <div class="price">price:{{ stockPrice }}
                 <button @click="toggleup" >+</button>
                 <button @click="toggledown">-</button>
             </div>
 
             <div>status:<span :class="status">{{ stockStatus }}</span></div>
-            <StockChart :price="stockPrice" :status="stockStatus" :something="some_methods"/>
+            <StockChart :something="some_methods" :codeName="stockCode"/>
         </header>
     </div>
 </template>
@@ -88,7 +104,7 @@ export default {
     gap:12px;
 }
 button{
-    width:18px;
+    width:auto;
     text-align: center;
     background-color:black;
     border:none;

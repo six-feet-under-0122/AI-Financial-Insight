@@ -2,7 +2,7 @@
 import StockCard from './components/icons/StockCard.vue'
 
 </script>
-
+<!-- props套props??heihei... -->
 <template>
 	<div class="app">
 		<header class="app-header">

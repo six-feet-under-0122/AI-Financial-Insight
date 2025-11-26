@@ -8,7 +8,7 @@ import {TitleComponent,TooltipComponent,GridComponent,LegendComponent} from 'ech
 use([CanvasRenderer,LineChart,TitleComponent,TooltipComponent,GridComponent,LegendComponent])
 export default {
     name:'stockChart',
-    props:["something"],
+    props:["something",'price','stockStatus','codeName'],
     data(){
         return {
             //echarts的option
@@ -22,7 +22,7 @@ export default {
 
                 },
                 legend:{
-                    data:['SFU']
+                    data:[this.codeName]
 
                 },
                 xAxis:{
@@ -33,7 +33,7 @@ export default {
                     type:'value'
                 },                
                 series:[{
-                    name:"SFU",//与legend配对；
+                    name:this.codeName,//与legend配对；
                     type:'line',
                     data:[99,100,101,102,101,100,100]
                 }]
