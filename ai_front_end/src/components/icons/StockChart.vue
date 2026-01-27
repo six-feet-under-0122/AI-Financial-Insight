@@ -48,6 +48,12 @@ export default {
             this.chartoption.series[0].data=newData;
         }
     },
+    //子组件的props需要时刻更新
+    watch:{
+        something(newData){
+            
+        }
+    },
     mounted(){
         console.log("StockChart mounted")
         console.log(this.$refs.chart)
@@ -67,8 +73,6 @@ export default {
     
 </div>
 <div class="test">{{ something }}</div>
-
-
 </template>
 
 <style>

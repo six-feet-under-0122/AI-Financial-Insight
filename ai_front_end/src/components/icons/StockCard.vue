@@ -27,14 +27,7 @@ export default {
             if (this.stockStatus === 'down') return '▼'
             return '—'
         },
-        status(){
-            return {
-                up: this.stockStatus === 'up',
-                down: this.stockStatus === 'down',
-                flat: this.stockStatus === 'flat'
-            }
-            
-        }
+
     },
     methods: {
         toggleStatus() {
@@ -72,6 +65,9 @@ export default {
 </script>
 
 
+
+
+
 <template>
     <div class="stock-card" style="width:100%">
         <header class="card-header">
@@ -85,11 +81,13 @@ export default {
                 <button @click="toggledown">-</button>
             </div>
 
-            <div>status:<span :class="status">{{ stockStatus }}</span></div>
+            <div>status:<span :class="priceClass" @click="toggleStatus">{{ statusSymbol }}</span></div>
             <StockChart :something="some_methods" :codeName="stockCode"/>
         </header>
     </div>
 </template>
+
+
 
 <style scoped>
 .stock-card{
