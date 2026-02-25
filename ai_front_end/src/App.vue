@@ -7,12 +7,13 @@ const loading = ref(false);
 const search_name = async()=>{
     loading.value = true;
     try{
-        const res = await axios.get("/api",
+        const res = await axios.get("/api/search",
             {
                 params: {
                     keywords: keywords.value
                 }
             }
+            // 拼接URL和参数，axios会自动处理编码和格式化
         )
         result.value = res.data.msg
     }catch(error){

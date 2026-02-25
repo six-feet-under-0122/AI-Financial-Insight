@@ -1,14 +1,42 @@
 [
-  {
-    "keyword": "apple",
-    "name": "Apple Inc",
-    "x": ["2024-01", "2024-02", "2024-03"],
-    "y": [100, 120, 140]
-  },
-  {
-    "keyword": "tesla",
-    "name": "Tesla",
-    "x": ["2024-01", "2024-02", "2024-03"],
-    "y": [300, 280, 260]
-  }
+    {
+        "stock":"tesla",
+        "date":"2024-01",
+        "comment":"业绩很好"
+    },
+    {
+        "stock": "Apple", 
+        "date": "2024-01", 
+        "comment": "一般"
+    },
+    {
+        "stock":"tesla",
+        "date":"2024-01",
+        "comment":"业绩不好"
+    },
+    {
+        "stock":"tesla",
+        "date":"2024-01",
+        "comment":"业绩很棒"
+    },
+    {
+        "stock":"tesla",
+        "date":"2024-01",
+        "comment":"bad"
+    },
+    {
+        "stock": "Apple", 
+        "date": "2024-01", 
+        "comment": "不错"
+    },
+    {
+        "stock": "Apple", 
+        "date": "2024-01", 
+        "comment": "业绩很好"
+    },
+    {
+        "stock": "Amazon", 
+        "date": "2024-01", 
+        "comment": "不好"
+    }
 ]
