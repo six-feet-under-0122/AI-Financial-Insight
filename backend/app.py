@@ -19,5 +19,34 @@ def search():
     if not key_answers:
         return jsonify({'message': "no stock found",
                         'comment':[]}),200
-    return jsonify({'comment':key_answers}),200
+    else :
+        #这里处理函数
+        sentiment =[]
+        for d in key_answers:
+            sentiment.append(simple_sentiment(d))
+        positive = sentiment.count(1)
+        negative = sentiment.count(-1)
+        neutral = sentiment.count(0)
+        total = len(key_answers)
+
+
+        return jsonify({'comment':key_answers,
+                        'positive':positive
+                        ,'negative':negative,
+                        'neutral':neutral
+                        ,'total':total
+                        }),200
+
+def simple_sentiment(text):
+    positive = ["好","不错","积极","棒"]
+    negative = ["不好","不行","消极","差"]
+    for item in positive:
+        for item2 in negative:
+            if item2 in text:
+                return -1
+            elif item in text:
+                return 1
+            else :
+                return 0
+
 #先用本地json文件
