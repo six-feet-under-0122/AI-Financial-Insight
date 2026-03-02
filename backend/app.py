@@ -40,13 +40,11 @@ def search():
 def simple_sentiment(text):
     positive = ["好","不错","积极","棒"]
     negative = ["不好","不行","消极","差"]
+    for item in negative:
+        if item in text:
+            return -1
     for item in positive:
-        for item2 in negative:
-            if item2 in text:
-                return -1
-            elif item in text:
-                return 1
-            else :
-                return 0
-
+        if item in text:
+            return 1
+    return 0
 #先用本地json文件
