@@ -1,6 +1,7 @@
 <script setup>
 import{ref}from 'vue';
 import axios from 'axios';  
+import * as echarts from 'echarts';
 const keywords = ref('');
 const result = ref('');
 const loading = ref(false);
@@ -15,13 +16,45 @@ const search_name = async()=>{
             }
             // 拼接URL和参数，axios会自动处理编码和格式化
         )
-        result.value = res.data.msg
+        result.value = res.data;
     }catch(error){
         console.error("Error fetching data:", error);
     }finally{
         loading.value = false;
     }
+    console.log("Search completed");
+    console.log(result.value);
+    
     }
+const draw_chart = (result) => {
+    const dom = document.getElementById('chart');
+    if (!chart) chart = echarts.init(dom)
+    const option = {
+        title:{
+            text:'Sentiment Distribution',
+            left:'center'
+        },
+        tooltip:{
+            trigger:'item'
+        },
+        legend:{
+            bottom: 0 
+        },
+        series:[
+            {
+                name:"sentiment",
+                type:"pie",
+                radius:"50%",
+                data:[
+                    {value:result.positive, name:'Positive'},
+                    {value:result.neutral, name:'Neutral'},
+                    {value:result.negative, name:'Negative'}
+                ]
+            }
+        ]
+}
+     chart.setOption(option);
+}
 //添加加载状态
 </script>
 <!-- props套props??heihei... -->
@@ -34,7 +67,10 @@ const search_name = async()=>{
     <button type="submit">Search</button>
 </form>
 <div v-if="loading">loading...</div>
-<div v-else>{{ result }}</div>
+<div v-else>{{ result }}
+    <div id="chart" style="width: 600px; height: 400px;"></div>
+</div>
+
 </template>
 
 
