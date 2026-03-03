@@ -28,15 +28,17 @@
   >
   > 请求参数：
   >
-  > - keyword：财经关键词
+  > - keywords：财经关键词
   >
   > 返回实例：
   >
   > ```json
   > {
-  >     "keyword":"新能源",
-  >     "positive":6,
-  >     "negative":4
+  > 	'comment':['业绩很好', '业绩不好', '业绩很棒', 'bad'],
+  >     'positive':2,
+  >     'negative':3,
+  >     'neutral':1,
+  >     'total':6
   > }
   > ```
 

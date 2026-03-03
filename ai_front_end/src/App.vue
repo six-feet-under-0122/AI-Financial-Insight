@@ -1,14 +1,15 @@
 <script setup>
-import{ref}from 'vue';
+import{ref,nextTick}from 'vue';
 import axios from 'axios';  
 import * as echarts from 'echarts';
 const keywords = ref('');
 const result = ref('');
 const loading = ref(false);
+const msg_error = ref("");
 const search_name = async()=>{
     loading.value = true;
     try{
-        const res = await axios.get("/api/search",
+        const res = await axios.get("http://127.0.0.1:5000/api/search",
             {
                 params: {
                     keywords: keywords.value
@@ -24,11 +25,21 @@ const search_name = async()=>{
     }
     console.log("Search completed");
     console.log(result.value);
+    await nextTick();
     
+    draw_chart(result.value);
     }
+let chart = null;
 const draw_chart = (result) => {
+    if(result.total === 0)
+    {
+        msg_error.value = "No data to display in chart";
+        console.log("No data to display in chart");
+    
+        return
+    }
     const dom = document.getElementById('chart');
-    if (!chart) chart = echarts.init(dom)
+    chart = echarts.init(dom)
     const option = {
         title:{
             text:'Sentiment Distribution',
@@ -68,7 +79,8 @@ const draw_chart = (result) => {
 </form>
 <div v-if="loading">loading...</div>
 <div v-else>{{ result }}
-    <div id="chart" style="width: 600px; height: 400px;"></div>
+    <div v-if = "msg_error">{{ msg_error }}</div>
+    <div v-else id="chart" style="width: 600px; height: 400px;"></div>
 </div>
 
 </template>

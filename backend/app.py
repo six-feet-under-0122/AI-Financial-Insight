@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 import json
 from pathlib import Path
+from flask_cors import CORS
 app = Flask(__name__)#创建一个Flask应用
-
+CORS(app)
 @app.route('/api/search', methods=['GET'])
 def search():
     keyword = request.args.get('keywords',' ')#默认值
@@ -18,7 +19,12 @@ def search():
             key_answers.append(d["comment"])
     if not key_answers:
         return jsonify({'message': "no stock found",
-                        'comment':[]}),200
+                        'comment':0,
+                        'positive':0,
+                        'negative':0,
+                        'neutral':0,
+                        'total':0
+                        }),200
     else :
         #这里处理函数
         sentiment =[]
@@ -48,3 +54,5 @@ def simple_sentiment(text):
             return 1
     return 0
 #先用本地json文件
+if __name__ == "__main__":
+    app.run(debug=True)
