@@ -28,6 +28,7 @@ const search_name = async()=>{
     await nextTick();
     
     draw_chart(result.value);
+    chart = null;
     }
 let chart = null;
 const draw_chart = (result) => {
@@ -38,8 +39,13 @@ const draw_chart = (result) => {
     
         return
     }
+    else{
+        msg_error.value = null;
+    }
     const dom = document.getElementById('chart');
+    if (!chart) {
     chart = echarts.init(dom)
+}
     const option = {
         title:{
             text:'Sentiment Distribution',
@@ -80,7 +86,7 @@ const draw_chart = (result) => {
 <div v-if="loading">loading...</div>
 <div v-else>{{ result }}
     <div v-if = "msg_error">{{ msg_error }}</div>
-    <div v-else id="chart" style="width: 600px; height: 400px;"></div>
+    <div id="chart" style="width: 600px; height: 400px;"></div>
 </div>
 
 </template>
