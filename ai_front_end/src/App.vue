@@ -36,7 +36,7 @@ const draw_chart = (result) => {
     if(result.total === 0)
     {
         msg_error.value = "No data to display in chart";
-        console.log("No  to display in chart");
+        console.log("No data to display in chart");
     
         return
     }
